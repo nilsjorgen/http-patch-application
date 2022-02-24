@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+
+usage() {
+  echo "usage: json-server [start|stop]"
+  exit 1
+}
+
+if [ "$#" -ne 1 ]; then
+  usage
+fi
+
+if [ "$1" = "start" ]; then
+  docker run -d --rm -p3000:3000 -e DATA_FILE=books.json -v "$(pwd)"/data/books.json:/data/books.json --name json-server nilsjorgen/json-server:17-alpine
+elif [ "$1" = "stop" ]; then
+  docker kill json-server
+else
+  usage
+fi
+
+docker ps -a
