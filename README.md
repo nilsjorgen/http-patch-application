@@ -1,7 +1,7 @@
 # kotlin-http-patch
 
 A minimal [Kotlin](https://kotlinlang.org) and [Spring Boot](https://spring.io/projects/spring-boot) application for
-testing `HTTP PATCH`. 
+testing `HTTP PATCH`.
 
 Since [the standard JDK HTTP library does not support HTTP PATCH](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html#patchForObject-java.lang.String-java.lang.Object-java.lang.Class-java.util.Map-)
 by default, Spring must be able to locate a `ClientHttpRequestFactory` that does support `HTTP PATCH`.
@@ -29,6 +29,9 @@ curl -s  http://localhost:9000/books/3 \
 -H "Content-Type: application/json" \
 -X PATCH --data '{"author": "New Author", "title": "New Title"}'
 ```
+
+Remove `implementation("com.squareup.okhttp3:okhttp:4.9.3")` from the `build.gradle.kts` to get this application to fail
+on the update call.
 
 ## Requirements
 
