@@ -27,7 +27,7 @@ curl -s -X GET  http://localhost:9000/books
 # Update a book
 curl -s  http://localhost:9000/books/3 \
 -H "Content-Type: application/json" \
--X PATCH --data '{"author": "New Author", "title": "New Title"}'
+--data '{"author": "New Author", "title": "New Title"}'
 ```
 
 Remove `implementation("com.squareup.okhttp3:okhttp:4.9.3")` from the `build.gradle.kts` to get this application to fail
