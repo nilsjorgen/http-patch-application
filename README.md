@@ -15,7 +15,8 @@ for `HTTP PATCH`.
 Run the downstream backend with:
 
 ```sh
-./scripts/json-server start
+# Assuming project root is the current directory.
+scripts/json-server start data/books.json  
 ```
 
 Call the application, listening on port 9000, with:
@@ -30,10 +31,10 @@ curl -s  http://localhost:9000/books/3 \
 --data '{"author": "New Author", "title": "New Title"}'
 ```
 
-Remove `implementation("com.squareup.okhttp3:okhttp:4.9.3")` from the `build.gradle.kts` to get this application to fail
+Remove `implementation("com.squareup.okhttp3:okhttp:4.10.0")` from the `build.gradle.kts` to get this application to fail
 on the update call.
 
 ## Requirements
 
-1. A working [Docker]() environment.
+1. A working [Docker](https://www.docker.com/) environment.
 

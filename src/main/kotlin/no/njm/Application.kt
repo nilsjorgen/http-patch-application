@@ -12,11 +12,13 @@ class Application {
      * The auto-configured RestTemplateBuilder looks for ClientHttpRequestFactory implementations on the classpath.
      *
      * @see org.springframework.boot.web.client.RestTemplateBuilder
-     * @see org.springframework.boot.web.client.ClientHttpRequestFactorySupplier
+     * @see org.springframework.boot.web.client.ClientHttpRequestFactories
      */
     @Bean
     fun restTemplate(restTemplateBuilder: RestTemplateBuilder): RestTemplate? {
-        return restTemplateBuilder.detectRequestFactory(false).rootUri(BASE_URL).build()
+        // Turn of auto detection of ClientHttpRequestFactory implementations:
+        // return restTemplateBuilder.detectRequestFactory(false).rootUri(BASE_URL).build()
+        return restTemplateBuilder.rootUri(BASE_URL).build()
     }
 }
 

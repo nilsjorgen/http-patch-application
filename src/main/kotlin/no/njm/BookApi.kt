@@ -17,8 +17,13 @@ class BookApi(private val bookClient: BookClient) {
         return ResponseEntity.ok(bookClient.getBooks())
     }
 
+    private val log = logger()
+
     @PatchMapping("/books/{id}")
-    fun newEmployee(@PathVariable id: Int?, @RequestBody updateBook: UpdateBook?): ResponseEntity<Any> {
+    fun patchBook(@PathVariable id: Int?, @RequestBody updateBook: UpdateBook?): ResponseEntity<Any> {
+
+        log.info("id: $id")
+
         val updatedBook = bookClient.updateBook(id!!, updateBook!!)
         updatedBook?.let {
             return ResponseEntity.ok(updatedBook)

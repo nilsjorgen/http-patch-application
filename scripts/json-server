@@ -1,17 +1,17 @@
 #!/usr/bin/env sh
 
 usage() {
-  echo "usage: json-server [start|stop]"
+  echo "Usage: json-server {start FILE|stop}"
   exit 1
 }
 
-if [ "$#" -ne 1 ]; then
+if [[ "$#" -eq 0 ]]; then
   usage
 fi
 
-if [ "$1" = "start" ]; then
-  docker run -d --rm -p3000:3000 -e DATA_FILE=books.json -v "$(pwd)"/data/books.json:/data/books.json --name json-server nilsjorgen/json-server:17-alpine
-elif [ "$1" = "stop" ]; then
+if [[ "$1" = "start" && "$#" -eq 2 ]]; then
+  docker run -d --rm -p3000:3000 -e DATA_FILE=data.json -v "$(pwd)/$2":/data/data.json --name json-server nilsjorgen/json-server:17-alpine
+elif [[ "$1" = "stop" ]]; then
   docker kill json-server
 else
   usage
